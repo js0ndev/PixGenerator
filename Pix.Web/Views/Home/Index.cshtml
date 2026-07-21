@@ -1,0 +1,56 @@
+﻿@model Pix.Web.Models.PixViewModel
+
+<div class="hero-shell">
+    <div class="hero-card">
+        <div class="hero-copy">
+            <span class="eyebrow">Gestão premium</span>
+            <h1>Crie um PIX com estética sofisticada e experiência fluida.</h1>
+            <p class="subtext">Preencha os dados abaixo e transforme a geração do seu pagamento em um momento elegante, moderno e intuitivo.</p>
+        </div>
+
+        <div class="hero-form-card">
+            <form method="post" class="pix-form">
+                <div class="mb-3">
+                    <label for="Nome">Nome</label>
+                    <input asp-for="Nome" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="Cidade">Cidade</label>
+                    <input asp-for="Cidade" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="ChavePix">Chave PIX</label>
+                    <input asp-for="ChavePix" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="Valor">Valor</label>
+                    <input asp-for="Valor" />
+                </div>
+
+                <button type="submit">
+                    Gerar PIX
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.PixCopiaECola))
+{
+    <div class="results-grid">
+        <div class="result-card">
+            <h2>PIX Copia e Cola</h2>
+            <textarea rows="6" readonly>@Model.PixCopiaECola</textarea>
+        </div>
+
+        <div class="result-card qr-card">
+            <h2>QR Code</h2>
+            <div class="qr-frame">
+                <img src="data:image/png;base64,@Model.QrCodeBase64" alt="QR Code do PIX" width="250" />
+            </div>
+        </div>
+    </div>
+}
